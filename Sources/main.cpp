@@ -17,6 +17,7 @@ int main() {
 			memberJoin(members);
 			break;
 		case 2:
+			memberLogin(members);
 			break;
 		case 3:
 			break;

@@ -17,3 +17,22 @@ void memberJoin(vector<Member>& members) {
 
 	cout << "회원가입이 완료되었습니다!\n";
 }
+void memberLogin(const vector<Member>& members) {
+	string username, password;
+	cout << "이름: ";
+	cin >> username;
+	cout << "비밀벌호: ";
+	cin >> password;
+
+	bool checkMember = false;
+	for (const auto& member : members) {
+		if (member.username == username && member.password == password) {
+			checkMember = true;
+			cout << "로그인 성공!\n";
+			break;
+		}
+	}
+	if (checkMember == false) {
+		cout << "로그인 실패! 처음 화면으로 돌아갑니다\n";
+	}
+}

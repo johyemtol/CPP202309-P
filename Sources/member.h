@@ -10,3 +10,4 @@ struct Member {
 
 void memberSave(const vector<Member>& members);
 void memberJoin(vector<Member>& members);
+void memberLogin(const vector<Member>& members);
