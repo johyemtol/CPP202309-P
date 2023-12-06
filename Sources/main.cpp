@@ -22,17 +22,8 @@ int main() {
 			break;
 		case 3:
 			if (session.login==true) {
-				cout << session.username << "님 이용권을 소개해주겠습니다.\n";
-				int ticketchoice=0;
-				cout << "1. 1개월 이용권 60,000\n";
-				cout << "2. 3개월 이용권 150,000\n";
-				cout << "3. 6개월 이용권 250,000\n";
-				cout << "4. 12개월 이용권 400,000\n";
-				cout << "5. 하루 이용권 8,000\n";
-				cout << "6. 1:1 PT 5회 이용권 + 1개월 이용권 150,000\n";
-				cout << "7. 1:1 PT 10회 이용권 + 3개월 이용권 300,000\n";
-				cout << "이용권을 숫자로 선택 바랍니다: ";
-				cin >> ticketchoice;
+				memberPrice(session);
+
 			}
 			else {
 				cout << "로그인이 필요한 기능입니다!\n";
