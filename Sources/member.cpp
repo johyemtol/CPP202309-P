@@ -93,3 +93,18 @@ void memberPrice(UserSession& session) {
 		cout << "결제가 완료되었습니다." << endl;
 	}
 }
+
+void memberSearch(const vector<Member>& members, const string& memberTarget) {
+	bool found = false;
+
+	for (const auto& member : members) {
+		if (member.username == memberTarget) {
+			cout << "회원 이름: " << member.username << ", 회원 비밀번호: " << member.password << endl;
+			found = true;
+			break;
+		}
+	}
+	if (!found) {
+		cout << "해당하는 회원이 존재하지 않습니다." << endl;
+	}
+}

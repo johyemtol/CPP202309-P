@@ -18,3 +18,4 @@ void memberJoin(vector<Member>& members);
 void memberLogin(const vector<Member>& members, UserSession& session);
 void memberDisplay();
 void memberPrice(UserSession& session);
+void memberSearch(const vector<Member>& members, const string& memberTarget);

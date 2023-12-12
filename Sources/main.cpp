@@ -35,6 +35,17 @@ int main() {
 		case 38:
 			memberSave(members);
 			break;
+		case 2003:
+			if (session.login == true) {
+				string memberSearchname;
+				cout << "검색할 회원 이름을 입력하세요: ";
+				cin >> memberSearchname;
+				memberSearch(members, memberSearchname);
+			}
+			else {
+				cout << "회원 가입이 안되어 있습니다!\n";
+			}
+			break;
 		default:
 			cout << "잘못된 선택입니다. 다시 선택 바랍니다,\n";
 		}
