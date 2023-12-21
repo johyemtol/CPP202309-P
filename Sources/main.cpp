@@ -4,6 +4,7 @@ int main() {
 	int choice=0;
 	vector<Member> members;
 	UserSession session;
+	map<int, int> optionCounts;
 
 	while (choice!=4) {
 		cout << "1~4까지 선택바랍니다\n";
@@ -22,7 +23,7 @@ int main() {
 			break;
 		case 3:
 			if (session.login==true) {
-				memberPrice(session);
+				memberPrice(session,optionCounts);
 
 			}
 			else {

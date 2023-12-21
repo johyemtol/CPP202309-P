@@ -38,6 +38,7 @@ void memberLogin(const vector<Member>& members,UserSession& session) {
 }
 
 void memberDisplay() {
+	cout << "\n------------------------------------";
 	cout << "1. 1개월 이용권 60,000\n";
 	cout << "2. 3개월 이용권 150,000\n";
 	cout << "3. 6개월 이용권 250,000\n";
@@ -45,13 +46,17 @@ void memberDisplay() {
 	cout << "5. 하루 이용권 8,000\n";
 	cout << "6. 1:1 PT 5회 이용권 + 1개월 이용권 150,000\n";
 	cout << "7. 1:1 PT 10회 이용권 + 3개월 이용권 300,000\n";
+	cout << "------------------------------------\n";
+
 }
 
-void memberPrice(UserSession& session) {
+void memberPrice(UserSession& session, map<int, int>& optionCounts){
 	memberDisplay();
 	int optionChoice;
-	cout << "이용권을 선택하세요(1~7)";
+	cout << "이용권을 선택하세요(1~7)\n";
+	cout << "이용권 순위를 보고싶으면 10을 입력하시오";
 	cin >> optionChoice;
+	optionCounts[optionChoice]++;
 	int price;
 	switch (optionChoice) {
 	case 1:
@@ -75,6 +80,12 @@ void memberPrice(UserSession& session) {
 	case 7:
 		price = 300000;
 		break;
+	case 10:
+		cout << "회원권 선택 횟수\n";
+		for (const auto& count : optionCounts) {
+			cout << "옵션 " << count.first << ": " << count.second << "회\n";
+		}
+		return;
 	default:
 		cout << "잘못된 선택입니다.\n";
 		return;

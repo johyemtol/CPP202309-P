@@ -2,6 +2,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <map>
 using namespace std;
 
 struct Member {
@@ -17,5 +18,5 @@ void memberSave(const vector<Member>& members);
 void memberJoin(vector<Member>& members);
 void memberLogin(const vector<Member>& members, UserSession& session);
 void memberDisplay();
-void memberPrice(UserSession& session);
+void memberPrice(UserSession& session,map<int, int>& optionCounts);
 void memberSearch(const vector<Member>& members, const string& memberTarget);
