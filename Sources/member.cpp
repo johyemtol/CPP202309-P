@@ -6,6 +6,7 @@ void memberSave(const vector<Member>& members) {
 		cout << "회원 이름: " << member.username << ", 회원 비밀번호: " << member.password << endl;
 	}
 }
+//회원가입 함수
 void memberJoin(vector<Member>& members) {
 	Member newMember;
 	cout << "이름: ";
@@ -17,6 +18,8 @@ void memberJoin(vector<Member>& members) {
 
 	cout << "회원가입이 완료되었습니다!\n";
 }
+
+//로그인 함수
 void memberLogin(const vector<Member>& members,UserSession& session) {
 	string username, password;
 	cout << "이름: ";
@@ -24,6 +27,7 @@ void memberLogin(const vector<Member>& members,UserSession& session) {
 	cout << "비밀벌호: ";
 	cin >> password;
 
+	//회원 정보가 있을경우
 	for (const auto& member : members) {
 		if (member.username == username && member.password == password) {
 			session.username = username;
@@ -32,13 +36,16 @@ void memberLogin(const vector<Member>& members,UserSession& session) {
 			break;
 		}
 	}
+	//회원 정보가 없을경우
 	if (session.login == false) {
 		cout << "로그인 실패! 처음 화면으로 돌아갑니다\n";
 	}
 }
 
+
+//화면 띄우기
 void memberDisplay() {
-	cout << "\n------------------------------------";
+	cout << "\n------------------------------------\n";
 	cout << "1. 1개월 이용권 60,000\n";
 	cout << "2. 3개월 이용권 150,000\n";
 	cout << "3. 6개월 이용권 250,000\n";
@@ -50,6 +57,7 @@ void memberDisplay() {
 
 }
 
+//이용권 가격 설정과 이용권 순위
 void memberPrice(UserSession& session, map<int, int>& optionCounts){
 	memberDisplay();
 	int optionChoice;
@@ -90,7 +98,9 @@ void memberPrice(UserSession& session, map<int, int>& optionCounts){
 		cout << "잘못된 선택입니다.\n";
 		return;
 	}
+
 	cout << "선택한 이용권이 " << optionChoice << "번이고 가격이 " << price << "원입니다." << endl;
+	PrintExpirationDate(optionChoice);
 
 	cout << "<결제 방법> \n";
 	cout << "1. 신용카드";
@@ -105,6 +115,8 @@ void memberPrice(UserSession& session, map<int, int>& optionCounts){
 	}
 }
 
+
+//멤버 찾을 수 있도록함
 void memberSearch(const vector<Member>& members, const string& memberTarget) {
 	bool found = false;
 
@@ -118,4 +130,25 @@ void memberSearch(const vector<Member>& members, const string& memberTarget) {
 	if (!found) {
 		cout << "해당하는 회원이 존재하지 않습니다." << endl;
 	}
+}
+
+
+//만료일
+system_clock::time_point CalculateExpirationDate(int months) {
+	system_clock::time_point currentDate = system_clock::now();
+	auto expirationDate = currentDate + months * hours(24 * 30);
+
+	return expirationDate;
+}
+
+void PrintExpirationDate(int optionChoice) {
+	system_clock::time_point expirationDate = CalculateExpirationDate(optionChoice);
+
+	time_t expirationTime = system_clock::to_time_t(expirationDate);
+
+	tm expirationTM;
+	localtime_s(&expirationTM, &expirationTime);
+
+	cout << "만료일: " << setfill('0') << setw(4) << expirationTM.tm_year + 1900 << '-'
+		<< setw(2) << expirationTM.tm_mon + 1 << '-' << setw(2) << expirationTM.tm_mday << '\n';
 }
